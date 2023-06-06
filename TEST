@@ -1,0 +1,45 @@
+def switch_player():
+    global current_player
+
+    # Switch to the other player
+    current_player = 1 - current_player
+
+    # Update the player label
+    player_label.config(text=f"Player {current_player + 1}")
+
+# Create the main window
+root = tk.Tk()
+root.geometry("400x400") #Größe des Fensters Breite x Höhe
+root.minsize(width = 250, height=350)    #Mindestgröße, kann mit der Maus nicht kleiner gezogen werden 
+root.maxsize(width=500, height=500)    #Maximalgröße
+root.title("Star Wars Character Quiz")
+
+# Create a style for the buttons
+style = ttk.Style()
+style.configure('Correct.TButton', foreground='green')
+style.configure('Wrong.TButton', foreground='red')
+
+# Create the question label
+label = tk.Label(root, text=questions[current_question], padx=10, pady=10)
+label.pack()
+
+# Create the player label
+current_player = 0
+player_label = tk.Label(root, text="Player 1")
+player_label.pack()
+
+# Create the answer buttons
+answer_options = []
+for i, answer in enumerate(answers[current_question]):
+    button = ttk.Button(root, text=answer, command=lambda idx=i: check_answer(idx))
+    button.pack(fill='x', padx=10, pady=5)
+    answer_options.append(button)
+
+# Create the switch player button
+switch_button = ttk.Button(root, text="Switch Player", command=switch_player)
+switch_button.pack(fill='x', padx=10, pady=5)
+
+
+
+
+root.mainloop()
