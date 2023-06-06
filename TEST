@@ -1,3 +1,80 @@
+import tkinter as tk
+from tkinter import ttk
+
+# Define the quiz questions and answers
+questions = [
+    "Who is Luke Skywalker's father?",
+    "What is the name of Han Solo's ship?",
+    "Who is the main antagonist in the original Star Wars trilogy?",
+    "Who is Anakin Skywalker's padawan?",
+    "What is the callsign of Luke's X-Wing?",
+    "What is the homeworld of Anakin Skywalker?",
+    "Who is Master Qui-Gon Jinn?",
+    "Who said 'I Hate Sand . Its rough, coarse and gets everywhere?'",
+    "Who is not a Sith Lord?",
+    "What is Ahsoka Tano's spezies?",
+    "Which Villain has four arms and a collection Lightsabers?",
+    "Who said 'Hello There'",
+    "Who did not have the High Ground on Mustafar",
+    "Which planet was the first to be entirely obliterated by the first death star",
+    "Which prominant beverage is exclusive to tatooine",
+]
+
+answers = [
+    ["Darth Vader", "Obi-Wan Kenobi", "Han Solo", "Yoda"],
+    ["X-Wing", "TIE Fighter", "Millennium Falcon", "Star Destroyer"],
+    ["Darth Vader", "Emperor Palpatine", "Boba Fett", "Darth Maul"],
+    ["C-3PO", "Ahsoka Tano", "Jar Jar Binks", "Jango Fett"],
+    ["Red 5", "Danger 5", "Red October", "Redneck"],
+    ["Kamino", "Coruscant", "Tatooine", "Naboo"],
+    ["Obi Wan's Master", "A Sith Lord", "Han Solo's uncle", "Galactic Senator"],
+    ["Obi-Wan Kenobi", "Padme Amidala", "Anakin Skywalker", "Jar Jar Binks"],
+    ["Emperor Palpatine", "Darth Maul", "Count Dooku", "Jar Jar Binks"],
+    ["Gungan", "Wookie", "Twilek", "Togruta"],
+    ["Pong Krell", "Emperor Palpatine", "General Grievous", "Boba Fett"],
+    ["Obi-Wan Kenobi", "Mace Windu", "Captain Rex", "Jabba the Hut"],
+    ["Obi-Wan Kenobi", "Anakin Skywalker", "Grogu", "Rey"],
+    ["Scarif", "Alderaan", "Hoth", "Jeddah"],
+    ["Spotchka", "Blue Milk", "Corellianischer Whiskey", "Chandrilanischer Brandy"],
+]
+
+correct_responses = [0, 2, 0, 1, 0, 2, 0, 2, 3, 3, 2, 0, 1, 1, 1]
+
+# Initialize the current question index and player scores
+current_question = 0
+player_scores = [0, 0]
+
+
+
+def check_answer(answer_idx):
+    global current_question
+
+    # Check if the answer is correct
+    if answer_idx == correct_responses[current_question]:
+        player_scores[current_player] += 1
+        button.config(style='Correct.TButton')
+    else:
+        button.config(style='Wrong.TButton')
+
+    # Update the current question index
+    current_question += 1
+
+
+    # If all questions have been answered, show the final scores
+    if current_question == len(questions):
+        label.config(text=f"Player 1 score: {player_scores[0]}\nPlayer 2 score: {player_scores[1]}")
+        button.config(text="Quit", command=root.destroy)
+    else:
+        # Update the question and answer options
+        label.config(text=questions[current_question])
+        for i, option in enumerate(answer_options):
+            option.config(text=answers[current_question][i])
+        
+        #labelScore = ttk.Label(root, text=f"Player 1 score: {player_scores[0]}\nPlayer 2 score: {player_scores[1]}")
+    
+    
+
+
 def switch_player():
     global current_player
 
